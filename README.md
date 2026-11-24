@@ -11,7 +11,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Linux-2EA043?style=flat-square&logo=linux&logoColor=white" alt="Platform Linux">
-  <img src="https://img.shields.io/badge/Rust-1.75%2B-DEA584?style=flat-square&logo=rust&logoColor=white" alt="Rust 1.75+">
+  <img src="https://img.shields.io/badge/Rust-1.75%2B-DEA584?style=flat-square&logo=rust&logoColor=white" alt="Rust 1.85+">
   <img src="https://img.shields.io/badge/Backend-Mullvad_CLI-192E45?style=flat-square" alt="Backend Mullvad CLI">
   <img src="https://img.shields.io/badge/License-MIT-0969DA?style=flat-square" alt="License MIT">
 </p>
