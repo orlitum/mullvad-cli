@@ -1,0 +1,17 @@
+# Скопируйте в ~/.config/mullvad-cli/config.toml (права 0600 выставляются автоматически)
+whitelist_devices = ["My Laptop", "Home Desktop"]
+eviction_policy = "round-robin" # "round-robin" или "oldest-device"
+check_interval_secs = 3
+rr_index = 0
+
+[profile]
+enforce_settings = true
+multihop = false
+lockdown = true
+quantum_resistant = true
+daita = false
+ipv6 = false
+
+# [[accounts]]
+# label = "Main"
+# key = "0000000000000000"
