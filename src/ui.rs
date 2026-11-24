@@ -28,8 +28,6 @@ use tokio::sync::mpsc;
 const MULLVAD_YELLOW: Color = Color::Rgb(255, 213, 36);
 const MULLVAD_BLUE_DARK: Color = Color::Rgb(25, 46, 69);
 const MULLVAD_BLUE_MID: Color = Color::Rgb(41, 77, 115);
-const MOLE_FUR: Color = Color::Rgb(201, 146, 56);
-const MOLE_NOSE: Color = Color::Rgb(245, 199, 126);
 const STATUS_GREEN: Color = Color::Rgb(68, 209, 122);
 const STATUS_RED: Color = Color::Rgb(255, 77, 77);
 const STATUS_WARN: Color = Color::Rgb(255, 165, 0);
@@ -731,12 +729,11 @@ fn draw_ui(f: &mut Frame, app: &mut AppState) {
     draw_footer(f, app, chunks[4]);
 }
 
-fn mullvad_mole_art() -> Vec<Line<'static>> {
+fn shield_art() -> Vec<Line<'static>> {
     let bg = MULLVAD_BLUE_DARK;
+    let mid = MULLVAD_BLUE_MID;
     let yel = MULLVAD_YELLOW;
-    let fur = MOLE_FUR;
-    let nose = MOLE_NOSE;
-    let wht = Color::White;
+    let grn = STATUS_GREEN;
 
     let cell = |ch: &'static str, fg: Color, bg_c: Color| {
         Span::styled(ch, Style::default().fg(fg).bg(bg_c))
@@ -744,38 +741,47 @@ fn mullvad_mole_art() -> Vec<Line<'static>> {
 
     vec![
         Line::from(vec![
-            cell("      ", bg, bg),
-            cell("▄", yel, bg),
-            cell("█", wht, bg),
-            cell("████", yel, bg),
-            cell("▄ ", bg, bg),
-        ]),
-        Line::from(vec![
-            cell(" ", bg, bg),
-            cell("▄", nose, bg),
-            cell("  ▄▄", yel, bg),
-            cell("█", wht, bg),
-            cell("██████", yel, bg),
+            cell("   ", bg, bg),
+            cell("▄█████████▄", yel, bg),
             cell(" ", bg, bg),
         ]),
         Line::from(vec![
-            cell(" ", bg, bg),
-            cell("▀", nose, bg),
-            cell("████", fur, bg),
-            cell("▀▀████", fur, yel),
-            cell("▀ ", fur, bg),
+            cell("  ", bg, bg),
+            cell("█", yel, bg),
+            cell("████", mid, mid),
+            cell("▄", grn, mid),
+            cell("████", mid, mid),
+            cell("█", yel, bg),
+            cell("  ", bg, bg),
+        ]),
+        Line::from(vec![
+            cell("  ", bg, bg),
+            cell("█", yel, bg),
+            cell("██", mid, mid),
+            cell("▄▀", grn, mid),
+            cell(" ", mid, mid),
+            cell("▀▄", grn, mid),
+            cell("██", mid, mid),
+            cell("█", yel, bg),
+            cell("  ", bg, bg),
         ]),
         Line::from(vec![
             cell("   ", bg, bg),
-            cell("▀████", fur, bg),
-            cell("▄", bg, fur),
-            cell("█████", fur, bg),
+            cell("▀█", yel, bg),
+            cell("█", mid, mid),
+            cell("▄▀", yel, mid),
+            cell(" ", mid, mid),
+            cell("▀▄", yel, mid),
+            cell("█", mid, mid),
+            cell("█▀", yel, bg),
             cell(" ", bg, bg),
         ]),
         Line::from(vec![
-            cell("    ", bg, bg),
-            cell("▄███████▄", fur, bg),
-            cell(" ", bg, bg),
+            cell("     ", bg, bg),
+            cell("▀██", yel, bg),
+            cell("█", grn, bg),
+            cell("██▀", yel, bg),
+            cell("   ", bg, bg),
         ]),
     ]
 }
@@ -794,7 +800,7 @@ fn draw_banner(f: &mut Frame, app: &AppState, area: Rect) {
         .constraints([Constraint::Length(16), Constraint::Min(30)])
         .split(inner);
 
-    f.render_widget(Paragraph::new(mullvad_mole_art()), cols[0]);
+    f.render_widget(Paragraph::new(shield_art()), cols[0]);
 
     let (status_text, status_color) = match &app.status.state {
         VpnState::Connected => ("● CONNECTED", STATUS_GREEN),
