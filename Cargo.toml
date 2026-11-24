@@ -2,7 +2,7 @@
 name = "mullvad-cli"
 version = "1.0.0"
 edition = "2021"
-rust-version = "1.75"
+rust-version = "1.85"
 description = "Mullvad Multi-Account CLI, Slot-Eviction Watchdog & TUI"
 license = "MIT"
 
